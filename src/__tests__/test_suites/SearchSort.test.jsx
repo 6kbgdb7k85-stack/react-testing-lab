@@ -67,4 +67,21 @@ describe("SearchSort", () => {
       expect(catSortedTransactions).toEqual(expectedCatSortedTransactions);
     });
   });
+
+  test('gracefully handle onSort with bad param',async ()=>{
+    global.setFetchResponse(global.mockTransactions);
+    const { findAllByTestId, getByTestId } = render(<App />);
+    const transactions = await findAllByTestId("transaction");
+    const sortField = getByTestId("sort-field");
+
+    
+    fireEvent.change(sortField, { target: { value: "" } });
+    const transactionDescriptions = transactions.map(
+        (transaction) => transaction.querySelector("#description").textContent,
+    );
+    const expectedDescriptions = global.mockTransactions.map(
+        (transaction) => transaction.description,
+    );
+    expect(transactionDescriptions).toEqual(expectedDescriptions);
+  })
 });

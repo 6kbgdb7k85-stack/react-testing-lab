@@ -32,6 +32,7 @@ function AccountContainer() {
 
   // Sort function here
   function onSort(sortBy) {
+    if(!sortBy) return;// don't sort by nothing
     setTransactions(prevState=>[...prevState].sort((a,b)=>a[sortBy].localeCompare(b[sortBy])));
   }
 
