@@ -45,4 +45,26 @@ describe("AddTransactions", () => {
       ).toBeInTheDocument();
     });
   });
+
+  test('no transaction added if empty form submitted',()=>{
+    render(<App />);
+    const addForm = screen.getByRole("form");
+    global.setFetchResponse({
+      date: "07/16/2026",
+      description: "test",
+      category: "test category",
+      amount: 123,
+    });
+    const table=screen.getByTestId('transaction-table');
+    fireEvent.submit(addForm, {
+      preventDefault: vi.fn(),
+      target: {
+        date:'',
+        description:'',
+        category:'',
+        amount:''
+      },
+    });
+    expect(fetch).not.toHaveBeenCalled();
+  })
 });

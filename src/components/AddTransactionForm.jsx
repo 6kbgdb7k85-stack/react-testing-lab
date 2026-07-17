@@ -9,6 +9,13 @@ function AddTransactionForm({postTransaction}) {
       category: e.target.category.value,
       amount: e.target.amount.value
     }
+    let isValid = true;
+    Object.keys(newTransaction).forEach(key=>{
+      if(!newTransaction[key]){
+        isValid=false;
+      }
+    })
+    if(!isValid) return;
     postTransaction(newTransaction)
 
   }
