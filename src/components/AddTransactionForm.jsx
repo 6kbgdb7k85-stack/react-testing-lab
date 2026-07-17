@@ -15,12 +15,13 @@ function AddTransactionForm({postTransaction}) {
 
   return (
     <div className="ui segment">
-      <form className="ui form" onSubmit={(e)=>{submitForm(e)}}>
+      <form role="form" className="ui form" onSubmit={(e)=>{submitForm(e)}}>
         <div className="inline fields">
-          <input type="date" name="date" />
-          <input type="text" name="description" placeholder="Description" />
-          <input type="text" name="category" placeholder="Category" />
-          <input type="number" name="amount" placeholder="Amount" step="0.01" />
+          {/*added required to input fields to prevent saving with incomplete data*/}
+          <input data-testid="date-field" required type="date" name="date" />
+          <input data-testid="description-field" required type="text" name="description" placeholder="Description" />
+          <input data-testid="category-field" required type="text" name="category" placeholder="Category" />
+          <input data-testid="amount-field" required type="number" name="amount" placeholder="Amount" step="0.01" />
         </div>
         <button className="ui button" type="submit">
           Add Transaction
