@@ -37,7 +37,7 @@ describe("AddTransactions", () => {
         amount: 123,
       }),
     });
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         table
           .querySelectorAll("td")

@@ -13,7 +13,7 @@ describe("SearchSort", () => {
     const searchField = getByTestId("search-field");
     expect(transactions.length).toBe(2);
     fireEvent.change(searchField, { target: { value: "test2" } });
-    waitFor(() => {
+    await waitFor(() => {
       expect(transactions.length).toBe(1);
       //just checking the description since full data matching is already tested in DisplayTransactions suite
       expect(
@@ -25,7 +25,7 @@ describe("SearchSort", () => {
 
     //check resetting search brings back the previously filtered out option
     fireEvent.change(searchField, { target: { value: "" } });
-    waitFor(() => {
+    await waitFor(() => {
       expect(transactions.length).toBe(2);
       expect(
         transactionTable
@@ -43,7 +43,7 @@ describe("SearchSort", () => {
 
     //check description sort
     fireEvent.change(sortField, { target: { value: "description" } });
-    waitFor(() => {
+    await waitFor(() => {
       const descSortedTransactions = transactions.map(
         (transaction) => transaction.querySelector("#description").textContent,
       );
@@ -56,7 +56,7 @@ describe("SearchSort", () => {
 
     //check category sort
     fireEvent.change(sortField, { target: { value: "category" } });
-    waitFor(() => {
+    await waitFor(() => {
       const catSortedTransactions = transactions.map(
         (transaction) => transaction.querySelector("#category").textContent,
       );
